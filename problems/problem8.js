@@ -12,27 +12,41 @@ let verifyEquals = (lhs, rhs) => {
 }
 // we need 5 test cases. 
 let inputs = [
-
+    "hello",
+    "how are you",
+    "1 2 3 4",
+    "moi&toi",
+    "   7"
 ]
 
 let outputs = [
-
+    "olleh",
+    "uoy era woh",
+    "4 3 2 1",
+    "iot&iom",
+    "7   "
 ]
 
 /*
-Make this function return the input string, reversed. For example "hello" would return "olleh" and "how are you" would return "uoy era woh".
+Make this function return the input string, reversed. 
+For example "hello" would return "olleh" and "how are you" would return "uoy era woh".
 You must use at least one for loop for this exercise.
 
 HINTS: 
  - Create an empty array
- - Add each character of the string to that empty array (use the array method push). You'll need to use a for loop
+ - Add each character of the string to that empty array (use the array method push). 
+ You'll need to use a for loop
  - Create another empty array
  - Add each character of the string to new empty array in reverse order
  - Convert that array back to a string (use the join array method)
  
 */
 function f(str) {
-
+    ans = ""
+    for (letter of str) {
+        ans = letter + ans
+    }
+    return ans
 }
 
 function runTest(i) {
@@ -42,9 +56,7 @@ function runTest(i) {
     verifyEquals(expected, actual)
 }
 
-runTest(0);
-runTest(1);
-runTest(2);
-runTest(3);
-runTest(4);
+for (i = 0; i < inputs.length; i++) {
+    runTest(i)
+}
 console.log("All tests passed for " + __filename)

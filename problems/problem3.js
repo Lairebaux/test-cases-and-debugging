@@ -13,21 +13,44 @@ let verifyEquals = (lhs, rhs) => {
 }
 // we need 7 test cases. I've provided 2.
 let inputs = [
-  [2, 4],
-  [-3, 3]
+  ["str", "list"],
+  [123456],
+  [-10, "xxx"],
+  [7, 3],
+  [100, 100],
+  [-150, 25],
+  [0, 9],
+
 ]
 
 let outputs = [
-  6,
-  0
+  undefined,
+  undefined,
+  undefined,
+  10,
+  200,
+  -125,
+  9
 ]
 
 /*
-Make this function return the sum of the two numbers that are passed to it. If the input array length is not 2, or if anything other than numbers are passed, return undefined.
+Make this function return the sum of the two numbers that are passed to it. 
+If the input array length is not 2, or if anything other than numbers are passed, return undefined.
 */
-function f(input) {
+
+
+function f(x) {
+  if (
+    x.length !== 2 ||
+    typeof x[0] !== "number" ||
+    typeof x[1] !== "number") {
+    return undefined
+  }
+  return x[0] + x[1];
 
 }
+
+
 
 function runTest(i) {
   let expected = outputs[i];
@@ -35,11 +58,9 @@ function runTest(i) {
   verifyEquals(expected, actual)
 }
 
-runTest(0);
-runTest(1);
-runTest(2);
-runTest(3);
-runTest(4);
-runTest(5);
-runTest(6);
+
+for (i = 0; i < inputs.length; i++) {
+  runTest(i)
+};
+
 console.log("All tests passed for " + __filename)

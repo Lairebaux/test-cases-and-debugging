@@ -12,11 +12,20 @@ let verifyEquals = (lhs, rhs) => {
 }
 // we need 5 test cases. 
 let inputs = [
+    "hello world", 
+    "bon",
+    "abcd",
+    "BONJOUR",
+    ""
 
 ]
 
 let outputs = [
-
+    "Hello World", 
+    "Bon",
+    "Abcd",
+    "Bonjour",
+    ""
 ]
 
 /*
@@ -32,6 +41,11 @@ HINT:
 */
 function f(str) {
 
+    let words = str.toLowerCase().split(" ")
+    for (let i = 0; i < words.length; i++) {
+        words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1)
+    }
+    return words.join(" ")
 }
 
 function runTest(i) {
@@ -41,10 +55,9 @@ function runTest(i) {
     verifyEquals(expected, actual)
 }
 
-runTest(0);
-runTest(1);
-runTest(2);
-runTest(3);
-runTest(4);
+for (let i = 0; i < inputs.length; i++) {
+    runTest(i)
 
+}
 console.log("All tests passed for " + __filename)
+

@@ -12,17 +12,27 @@ let verifyEquals = (lhs, rhs) => {
 }
 // we need 7 test cases. 
 let inputs = [
-
+    ["foo", 3],
+    ["abs", -1],
+    ["ab", 3],
+    [3, "jilg]"],
+    ["12345 ", 3]
 ]
 
 let outputs = [
-
+    "foofoofoo",
+    "",
+    "ababab",
+    undefined,
+    "12345 12345 12345 "
 ]
 
 /*
-The function input is an array as input. The first element of the array is a string. The second is a number.
+The function input is an array as input. 
+The first element of the array is a string. The second is a number.
 Make this function return the string repeated as many times as specified by the second element of the array. 
-If a negative number or zero is specified, return an empty string. If any invalid parameters are supplied return undefined.
+If a negative number or zero is specified, return an empty string. 
+If any invalid parameters are supplied return undefined.
 
 For example:
 
@@ -31,21 +41,22 @@ f(["fo", 3]) // "fofofo"
 f(["foo", -1]) // ""
 */
 function f(arr) {
+    if (typeof arr[0] !== "string" && typeof arr[1] !== "number"){
+        return undefined
+    } if (arr[1] <= 0){
+        return ""
+    }
+    return arr[0].repeat(arr[1])
 
 }
 
 function runTest(i) {
-    if (i > inputs.length) throw new Error("You do not have enough test cases");
     let expected = outputs[i];
     let actual = f(inputs[i]);
     verifyEquals(expected, actual)
 }
 
-runTest(0);
-runTest(1);
-runTest(2);
-runTest(3);
-runTest(4);
-runTest(5);
-runTest(6);
+for (i = 0; i < inputs.length; i++) {
+    runTest(i)
+}
 console.log("All tests passed for " + __filename)

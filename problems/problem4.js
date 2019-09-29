@@ -14,16 +14,29 @@ let verifyEquals = (lhs, rhs) => {
 // we need 8 test cases. I've provided the first 2
 let inputs = [
   ["hello", 4],
-  ["", 2]
+  ["python", 0],
+  ["escape", 1],
+  [5, "error"],
+  ["devoir", 5],
+  ["bonjour", 5],
+  ["walking outside", 6],
+  ["septembre", 3],
 ]
 
 let outputs = [
-  "o",
-  undefined
+  "o", 
+  "p", 
+  "s", 
+  undefined, 
+  "r", 
+  "u", 
+  "g", 
+  "t"
 ]
 
 /*
-Make this function return the letter at the specified position in the string. If no such letter exists, it should return undefined.
+Make this function return the letter at the specified position in the string. 
+If no such letter exists, it should return undefined.
 
 For example:
 f(["hello", 1]); // e
@@ -32,22 +45,22 @@ f(["abc", 0]); // a
 
 */
 function f(arr) {
-
+  words = arr[0]
+  idx = arr[1]
+  if (typeof words !== "string" && typeof idx !== "number"){
+    return undefined
+  }
+  return words[idx]
 }
+
 
 function runTest(i) {
   let expected = outputs[i];
-  let input = inputs[i];
-  let actual = f(input);
+  let actual = f(inputs[i]);
   verifyEquals(expected, actual)
 }
 
-runTest(0);
-runTest(1);
-runTest(2);
-runTest(3);
-runTest(4);
-runTest(5);
-runTest(6);
-runTest(7);
+for (let i = 0; i < inputs.length; i++) {
+  runTest(i)  
+}
 console.log("All tests passed for " + __filename)
